@@ -3,12 +3,14 @@ import IndexPage from './pages/IndexPage.vue'
 import TodoPage from './pages/TodoPage.vue'
 import CarsPage from './pages/CarsPage.vue'
 import SignleCarPage from './pages/SignleCarPage.vue'
+import ExchangePage from './pages/ExchangePage.vue'
 
 const routes = [
   { path: '/', component: IndexPage },
   { path: '/todos', component: TodoPage },
   { path: '/cars', component: CarsPage },
   { path: '/cars/:id', component: SignleCarPage },
+  { path: '/exchange', component: ExchangePage },
 ]
 
 export const router = createRouter({
