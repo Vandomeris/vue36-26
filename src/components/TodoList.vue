@@ -23,7 +23,7 @@
     <span>{{ todo.title }}</span>
     <input v-model="todo.completed" type="checkbox" />
 
-    <button @click="deleteTodo(todo.id)">DELETE</button>
+    <ButtonTodoDelete @delete-todo="deleteTodo(todo.id)" />
 
     <button @click="editTodo(todo)">EDIT</button>
   </div>
@@ -41,6 +41,7 @@
 <script lang="ts" setup>
 import type { Todo } from '@/types'
 import { ref } from 'vue'
+import ButtonTodoDelete from './ButtonTodoDelete.vue'
 
 const showAdd = ref(false)
 const newTodoText = ref('')
