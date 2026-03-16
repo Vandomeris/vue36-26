@@ -7,6 +7,7 @@
       <p>от ${{ car.price }}</p>
       <p>{{ car.engine }} ({{ car.horsepower }} л.с)</p>
       <p>{{ car.drive }} | {{ car.transmission }}</p>
+      <button @click="addToCart(car)">Добавить в корзину</button>
       <RouterLink :to="`/cars/${car.id}`">Подробнее</RouterLink>
     </div>
   </div>
@@ -24,9 +25,9 @@
 </style>
 
 <script setup lang="ts">
-import type { Car } from '@/types'
+import type { Car, CarInCart } from '@/types'
 import ky from 'ky'
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref, type Reactive } from 'vue'
 
 const cars = ref<Car[]>([])
 
@@ -37,4 +38,13 @@ onMounted(async () => {
 
   console.log(cars.value)
 })
+
+const cart = inject<Reactive<CarInCart[]>>('cart')
+
+function addToCart(car: Car) {
+  cart?.push({
+    ...car,
+    quantity: 1,
+  })
+}
 </script>

@@ -18,6 +18,10 @@ export interface Car {
   mileage: number
 }
 
+export interface CarInCart extends Car {
+  quantity: number
+}
+
 export interface CurrencyInfo {
   ID: string
   NumCode: string
