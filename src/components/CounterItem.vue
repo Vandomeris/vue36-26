@@ -1,10 +1,12 @@
 <template>
   <div>
-    <button @click="store.addToOrder({ ...props.food, quantity: 1 })">Добавить в корзину</button>
-    <div>
-      <button @click="count = count - 1">-</button>
-      <span>{{ count }}</span>
-      <button @click="count = count + 1">+</button>
+    <button v-if="index === -1" @click="store.addToOrder({ ...props.food, quantity: 1 })">
+      Добавить в корзину
+    </button>
+    <div v-else>
+      <button @click="store.quantityDecrement(index)">-</button>
+      <span>{{ store.order[index]!.quantity }}</span>
+      <button @click="store.quantityIncrement(index)">+</button>
     </div>
   </div>
 </template>
@@ -12,7 +14,7 @@
 <script setup lang="ts">
 import { useOrderStore } from '@/stores'
 import type { Food } from '@/types'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const store = useOrderStore()
 
@@ -20,12 +22,17 @@ const props = defineProps<{
   food: Food
 }>()
 
-const inCart = computed<boolean>(() => {
-  const index = store.order.findIndex((item) => item.id === props.food.id)
-
-  if (index === -1) return false
-  else return true
+const index = computed<number>(() => {
+  return store.order.findIndex((item) => item.id === props.food.id)
 })
-
-const count = ref(0)
 </script>
+
+<style scoped>
+button {
+  background-color: darkblue;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: none;
+}
+</style>

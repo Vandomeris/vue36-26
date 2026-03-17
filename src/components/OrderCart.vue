@@ -8,6 +8,8 @@
         <span>{{ food.price }}</span>
       </li>
     </ul>
+
+    <p>Итого к оплате: {{ store.totalPrice }}</p>
   </div>
 </template>
 

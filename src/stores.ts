@@ -21,6 +21,15 @@ export const useOrderStore = defineStore('order', () => {
     if (index !== -1) order.value.splice(index, 1)
   }
 
+  function quantityIncrement(index: number) {
+    order.value[index]!.quantity++
+  }
+  function quantityDecrement(index: number) {
+    order.value[index]!.quantity--
+
+    if (order.value[index]!.quantity === 0) order.value.splice(index, 1)
+  }
+
   const totalQuantity = computed(() => {
     let total = 0
     order.value.forEach((item) => {
@@ -29,5 +38,21 @@ export const useOrderStore = defineStore('order', () => {
     return total
   })
 
-  return { order, addToOrder, deleteFromOrder, totalQuantity }
+  const totalPrice = computed(() => {
+    let total = 0
+    order.value.forEach((item) => {
+      total += item.price * item.quantity
+    })
+    return total
+  })
+
+  return {
+    order,
+    addToOrder,
+    deleteFromOrder,
+    totalQuantity,
+    quantityDecrement,
+    quantityIncrement,
+    totalPrice,
+  }
 })

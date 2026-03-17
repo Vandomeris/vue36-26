@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="cart-button">
-      <button @click="cartShow = true">Корзина</button>
+      <button @click="cartShow = true">Корзина ({{ store.totalQuantity }})</button>
     </div>
     <div class="food-grid">
       <div class="food-item" v-for="food in foods" :key="food.id">
         <h4>{{ food.title }}</h4>
         <p>{{ food.price }} рублей</p>
-        <CounterItem />
+        <CounterItem :food="food" />
       </div>
     </div>
 
@@ -39,14 +39,6 @@ onMounted(async () => {
 .food-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-}
-
-.food-grid button {
-  background-color: darkblue;
-  color: #fff;
-  font-size: 16px;
-  padding: 5px 10px;
-  border: none;
 }
 
 .cart-button {
