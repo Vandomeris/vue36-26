@@ -5,6 +5,7 @@ import CarsPage from './pages/CarsPage.vue'
 import SignleCarPage from './pages/SignleCarPage.vue'
 import ExchangePage from './pages/ExchangePage.vue'
 import CartPage from './pages/CartPage.vue'
+import OrderPage from './pages/OrderPage.vue'
 
 const routes = [
   { path: '/', component: IndexPage },
@@ -13,6 +14,7 @@ const routes = [
   { path: '/cars/:id', component: SignleCarPage },
   { path: '/exchange', component: ExchangePage },
   { path: '/cart', component: CartPage },
+  { path: '/order', component: OrderPage },
 ]
 
 export const router = createRouter({

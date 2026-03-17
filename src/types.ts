@@ -37,3 +37,9 @@ export interface CBApiResponse {
   PreviousDate: string
   Valute: Record<string, CurrencyInfo>
 }
+
+export interface Food {
+  id: string
+  title: string
+  price: number
+}
